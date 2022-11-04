@@ -77,10 +77,24 @@ const propiedadesPost = async (req,res) => {
     });
 }
 
-const propiedadesDelete = (req,res) => {
+const propiedadesDelete = async(req,res) => {
+    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
+
+    // middleware de validacion de errores
+    const errors = validationResult(req);
+    if (!errors.isEmpty()){
+        return res.status(400).json({
+            msg:'error en el validation result',
+            errors 
+        })
+    }
+
+    const {id} = req.params
+    const propiedadBorrada = await Propiedad.findByIdAndUpdate( id, { estado: false });
+    const quienLoBorro = req.usuario; 
     res.json({
-        ok: true,
-        msg: 'DELETE API PROPIEDAD  - CONTROLADOR'
+        msg: 'La propiedad se ha eliminado con exito',
+        propiedadBorrada, quienLoBorro
     });
 }
 

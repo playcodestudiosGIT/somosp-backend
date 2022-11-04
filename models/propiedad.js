@@ -60,5 +60,10 @@ const PropiedadSchema = Schema({
 
 });
 
+PropiedadSchema.methods.toJSON = function() {
+    const { __v, _id, ...propiedad  } = this.toObject();
+    propiedad.uid = _id;
+    return propiedad;
+}
 
 module.exports = model( 'Propiedad', PropiedadSchema );

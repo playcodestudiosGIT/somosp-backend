@@ -7,13 +7,14 @@ const {validationResult} = require('express-validator');
 
 const usuariosGet = async( req = request, res = response ) => {
 
-    const { limite = 10, desde = 0 } = req.query
+    const { limite = 20, desde = 0 } = req.query;
+    const query = { estado: true }
 
 
 
     const resp = await Promise.all([
         Usuario.countDocuments({estado: true}),
-        Usuario.find({estado: true})
+        Usuario.find(query)
             .skip(desde)
             .limit(limite)
     ])
@@ -64,7 +65,7 @@ const usuariosPost = async (req,res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         return res.status(400).json({
-            msg:'error en el validation result',
+            msg:'Error en las validaciones.',
             errors 
         })
     }
@@ -92,7 +93,7 @@ const usuariosDelete = async(req,res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         return res.status(400).json({
-            msg:'error en el validation result',
+            msg:'Error en las validaciones.',
             errors 
         })
     }

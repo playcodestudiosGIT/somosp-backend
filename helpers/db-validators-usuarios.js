@@ -6,14 +6,7 @@ const Usuario = require('../models/usuario')
 const esRoleValido = async (rol = '') => {
     const existeRol = await Role.findOne({rol});
     if (!existeRol) {
-        throw new Error(`el rol ${rol} no esta registrado`);   
-    }
-    }
-
-const esAdmin = async id => {
-    const usuario = await Usuario.findById(id);
-    if (usuario.rol == 'USER_ROLE') {
-        throw new Error(`el rol ${rol} no esta registrado`);   
+        throw new Error(`el rol ${rol} No esta permitido`);   
     }
     }
     
@@ -37,5 +30,4 @@ module.exports = {
     esRoleValido,
     emailExiste,
     existeUsuarioPorId,
-    esAdmin
 }

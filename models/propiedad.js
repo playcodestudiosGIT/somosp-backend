@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose');
 
 const PropiedadSchema = Schema({
-    proyecto: {
+    propiedadID: {
         type: String,
-        required: [true, 'El nombre del proyecto es obligatorio']
+        required: [true, 'El nombre o numero de la propiedad es obligatorio']
     },
     sevendeoalquila: {
         type: String,
@@ -13,17 +13,29 @@ const PropiedadSchema = Schema({
     tipopropiedad: {
         type: String,
         required: [true, 'La propiedad es obligatoria'],
-        enum: ['Apartamento', 'Casa', 'Oficina', 'Lote']
+        enum: ['Apartamento', 'Casa', 'Oficina', 'Local', 'Lote']
     },
     mts2: {
         type: String,
         required: true,
         default: 'No Value'
     },
-    sector: {
-        type: String,
+    proyecto: {
+        type: Schema.Types.ObjectId,
+        ref: 'Proyecto',
         required: true,
-        enum: ['Sector Centro', 'Sector Norte', 'Sector Este', 'Sector Oeste']
+    },
+    usuario: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
+    },
+    descripcion:{
+        type: String,
+    },
+    disponible:{
+        type: Boolean,
+        default: true
     },
     img: {
         type: String,
@@ -33,8 +45,8 @@ const PropiedadSchema = Schema({
         default: 'No hab',
     },
     precio: {
-        type: String,
-        default: 'No Price'
+        type: Number,
+        default: 0,
     },
     banos: {
         type: String,
@@ -55,13 +67,14 @@ const PropiedadSchema = Schema({
     estado: {
         type: Boolean,
         default: true
-    }
+    },
+    
     
 
 });
 
 PropiedadSchema.methods.toJSON = function() {
-    const { __v, _id, ...propiedad  } = this.toObject();
+    const { __v, _id, estado, ...propiedad  } = this.toObject();
     propiedad.uid = _id;
     return propiedad;
 }

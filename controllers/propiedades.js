@@ -1,41 +1,65 @@
 const { response, request } = require('express');
 const Propiedad = require('../models/propiedad');
-const {validationResult} = require('express-validator');
+const {validationResult, body} = require('express-validator');
 
 
-const propiedadesGet = async( req = request, res = response ) => {
+const obtenerPropiedades = async( req = request, res = response ) => {
 
-    const { limite, desde = 0 } = req.query
+    const { limite, desde = 0 } = req.query;
+    const query = { estado: true };
 
-    const [total, usuarios] = await Promise.all([
-        Propiedad.countDocuments({estado: true}),
-        Propiedad.find({estado: true})
+    const [total, propiedades] = await Promise.all([
+        Propiedad.countDocuments(query),
+        Propiedad.find(query)
+            .populate('usuario', 'nombre')
+            .populate('proyecto', 'nombre')
             .skip(desde)
             .limit(limite)
-    ])
+    ]);
 
 
     res.json({
         total,
-        usuarios
+        propiedades
     });
 }
 
-const propiedadesPut = async(req,res = response) => {
+const obtenerPropiedadesPorID = async( req = request, res = response ) => {
+
+    const { id } = req.params;
+
+    const propiedad = await Propiedad.findById(id)
+        .populate('usuario', 'nombre')
+        .populate('proyecto', 'nombre');
+    if(!propiedad) return res.status(400).json({
+        msg: 'La propiedad no existe. intenta con otra'
+    });
+
+
+    res.json({
+        propiedad
+    });
+}
+
+const actualizarPropiedades = async(req,res = response) => {
 
     //TODO: QUITAR ESTE MIDDLEWARE DE AQUI - MOVERLO A VALIDAR CAMPOS
 
     const errors = validationResult(req);
      if (!errors.isEmpty()){
          return res.status(400).json({
-             msg:'error en el validation result',
+             msg:'Error en las validaciones.',
              errors 
          })
      }
 
-    const id = req.params.id;
+    const {id} = req.params;
+    const { estado, usuario, ...resto } = req.body;
+    if(resto.nombre){
+        resto.nombre = data.nombre.toUpperCase();
+    }
 
-    const { _id, ...resto  } = req.body;
+    resto.usuario = req.usuario._id;
 
     const propiedad = await Propiedad.findByIdAndUpdate( id, resto, {new: true} );
 
@@ -45,63 +69,72 @@ const propiedadesPut = async(req,res = response) => {
 }
 
  
-const propiedadesPost = async (req,res) => {
+const crearPropiedades = async (req,res) => {
 
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI - MOVERLO A VALIDAR CAMPOS
+    // //TODO: QUITAR ESTE MIDDLEWARE DE AQUI - MOVERLO A VALIDAR CAMPOS
     
      // middleware de validacion de errores 
      const errors = validationResult(req);
      if (!errors.isEmpty()){
          return res.status(400).json({
-             msg:'error en el validation result',
+             msg:'Error en las validaciones.',
              errors 
-         })
-     }
+         });
+     };
 
-    const { proyecto, sevendeoalquila, tipopropiedad, mts2, sector } = req.body;
-    const propiedad = new Propiedad( {proyecto, sevendeoalquila, tipopropiedad, mts2, sector} );
+    const { estado, usuario, ...resto } = req.body;
 
     // Verificar si la propiedad existe
-    const existePropiedad = await Propiedad.findOne({ proyecto });
-    if(existePropiedad) {
+    const propiedadDB = await Propiedad.findOne({ propiedadID: resto.propiedadID });
+    if(propiedadDB) {
         return res.status(400).json(
             {
-                msg: 'La propiedad ya existe'
+                msg: `La propiedad ${propiedadDB.propiedadID} ya existe`
             }
         );
-    }
+    };
+
+    // Generar data
+    const data = {
+        ...resto,
+        nombre: body.propiedadID,
+        usuario: req.usuario._id
+    };
+
+    const propiedad = new Propiedad(data);
 
     await propiedad.save();
     res.status(201).json({
         msg: 'nueva propiedad creada',
+        propiedad
     });
 }
 
-const propiedadesDelete = async(req,res) => {
+const borrarPropiedades = async(req,res) => {
     //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
 
     // middleware de validacion de errores
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         return res.status(400).json({
-            msg:'error en el validation result',
+            msg:'Error en las validaciones.',
             errors 
         })
     }
 
     const {id} = req.params
-    const propiedadBorrada = await Propiedad.findByIdAndUpdate( id, { estado: false });
-    const quienLoBorro = req.usuario; 
+    const propiedadBorrada = await Propiedad.findByIdAndUpdate( id, { estado: false }, {new:true});
     res.json({
         msg: 'La propiedad se ha eliminado con exito',
-        propiedadBorrada, quienLoBorro
+        propiedadBorrada,
     });
 }
 
 
 module.exports = {
-    propiedadesGet,
-    propiedadesPut,
-    propiedadesPost,
-    propiedadesDelete
+    obtenerPropiedades,
+    obtenerPropiedadesPorID,
+    actualizarPropiedades,
+    crearPropiedades,
+    borrarPropiedades
 }

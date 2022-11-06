@@ -31,10 +31,9 @@ const tieneRol = ( ...roles ) => {
         }
 
         if (!roles.includes(req.usuario.rol)) return res.status(401).json({
-            msg: `Debe ponerse en contacto con un Agente o un Administrador`
+            msg: `Debe ponerse en contacto con un Administrador`
         });
-
-        console.log(roles, req.usuario.rol)
+        
         next();
     }
 }

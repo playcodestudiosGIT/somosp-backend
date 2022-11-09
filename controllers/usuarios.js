@@ -28,16 +28,6 @@ const usuariosGet = async( req = request, res = response ) => {
 
 const usuariosPut = async(req,res = response) => {
 
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-        return res.status(400).json({
-            msg:'ERROR DE VALIDACION',
-            errors 
-        })
-    }
-
     const id = req.params.id;
     const {_id, password, google, correo, ...resto} = req.body;
 
@@ -59,17 +49,6 @@ const usuariosPut = async(req,res = response) => {
 
 const usuariosPost = async (req,res) => {
 
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
-
-    // middleware de validacion de errores
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-        return res.status(400).json({
-            msg:'Error en las validaciones.',
-            errors 
-        })
-    }
-
     const { nombre, correo, password, rol } = req.body;
     const usuario = new Usuario({ nombre, correo, password, rol });
 
@@ -86,17 +65,6 @@ const usuariosPost = async (req,res) => {
 }
 
 const usuariosDelete = async(req,res) => {
-
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
-
-    // middleware de validacion de errores
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-        return res.status(400).json({
-            msg:'Error en las validaciones.',
-            errors 
-        })
-    }
 
     const { id } = req.params;
 

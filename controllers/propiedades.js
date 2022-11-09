@@ -43,16 +43,6 @@ const obtenerPropiedadesPorID = async( req = request, res = response ) => {
 
 const actualizarPropiedades = async(req,res = response) => {
 
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI - MOVERLO A VALIDAR CAMPOS
-
-    const errors = validationResult(req);
-     if (!errors.isEmpty()){
-         return res.status(400).json({
-             msg:'Error en las validaciones.',
-             errors 
-         })
-     }
-
     const {id} = req.params;
     const { estado, usuario, ...resto } = req.body;
     if(resto.nombre){
@@ -111,16 +101,6 @@ const crearPropiedades = async (req,res) => {
 }
 
 const borrarPropiedades = async(req,res) => {
-    //TODO: QUITAR ESTE MIDDLEWARE DE AQUI -MOVERLO A VALIDAR CAMPOS
-
-    // middleware de validacion de errores
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-        return res.status(400).json({
-            msg:'Error en las validaciones.',
-            errors 
-        })
-    }
 
     const {id} = req.params
     const propiedadBorrada = await Propiedad.findByIdAndUpdate( id, { estado: false }, {new:true});

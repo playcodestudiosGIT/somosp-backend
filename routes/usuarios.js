@@ -19,14 +19,13 @@ const {
 
 const {
     validarCampos,
-    esAdminRol,
     tieneRol,
     validarJWT
 } = require('../middlewares')
 
 const router = Router();
 
-router.get('/', usuariosGet);
+router.get('/obtener', usuariosGet);
 
 router.put('/:id', [
     validarJWT,
@@ -34,6 +33,7 @@ router.put('/:id', [
     tieneRol('ADMIN_ROLE', 'AGENTE_ROLE' ),
     check('id', 'No es un id valido').isMongoId(),
     check('id', 'No es un id valido').custom( existeUsuarioPorId ),
+    validarCampos
 ], usuariosPut);
 
 router.post('/', [
@@ -45,16 +45,15 @@ router.post('/', [
     check('correo', 'El correo no es válido').isEmail(),
     check('correo', 'El correo ya existe').custom( emailExiste ),
     check('rol').custom( esRoleValido ),
+    validarCampos
 ], usuariosPost );
 
 router.delete('/:id', [
     validarJWT,
-    // esAdminRol,
     tieneRol('ADMIN_ROLE'),
     check('id', 'No es un id valido').isMongoId(),
     check('id', 'No es un id valido').custom( existeUsuarioPorId ),
-    // check('rol').custom( esAdmin ), 
-    
+    validarCampos
 ], usuariosDelete);
 
 module.exports = router;

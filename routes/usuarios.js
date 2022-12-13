@@ -37,9 +37,9 @@ router.put('/:id', [
 ], usuariosPut);
 
 router.post('/', [
-    validarJWT,
+    // validarJWT,
     // esAdminRol,
-    tieneRol('ADMIN_ROLE', 'AGENTE_ROLE' ),
+
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('password', 'El password debe de ser más de 6 letras').isLength({ min: 6 }),
     check('correo', 'El correo no es válido').isEmail(),

@@ -11,8 +11,6 @@ const obtenerPropiedades = async( req = request, res = response ) => {
     const [total, propiedades] = await Promise.all([
         Propiedad.countDocuments(query),
         Propiedad.find(query)
-            .populate('usuario', 'nombre')
-            .populate('proyecto', 'nombre')
             .skip(desde)
             .limit(limite)
     ]);
@@ -29,8 +27,6 @@ const obtenerPropiedadesPorID = async( req = request, res = response ) => {
     const { id } = req.params;
 
     const propiedad = await Propiedad.findById(id)
-        .populate('usuario', 'nombre')
-        .populate('proyecto', 'nombre');
     if(!propiedad) return res.status(400).json({
         msg: 'La propiedad no existe. intenta con otra'
     });
@@ -75,11 +71,11 @@ const crearPropiedades = async (req,res) => {
     const { estado, usuario, ...resto } = req.body;
 
     // Verificar si la propiedad existe
-    const propiedadDB = await Propiedad.findOne({ propiedadID: resto.propiedadID });
+    const propiedadDB = await Propiedad.findOne({ nombreProp: resto.nombreProp });
     if(propiedadDB) {
         return res.status(400).json(
             {
-                msg: `La propiedad ${propiedadDB.propiedadID} ya existe`
+                msg: `La propiedad ${propiedadDB.propiedad} ya existe`
             }
         );
     };
@@ -87,7 +83,7 @@ const crearPropiedades = async (req,res) => {
     // Generar data
     const data = {
         ...resto,
-        nombre: body.propiedadID,
+        nombre: body.nombreProp,
         usuario: req.usuario._id
     };
 

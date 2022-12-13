@@ -8,11 +8,19 @@ const ProyectoSchema = Schema({
     },
     direccion: {
         type: String,
-        default: 'no set'
+        default: '-'
     },
     estado: {
         type: Boolean,
         default: true,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    ciudad: {
+        type: String,
         required: true
     },
     usuario: {
@@ -27,6 +35,10 @@ const ProyectoSchema = Schema({
     galeria: {
         type: Array
     }
+
+    // Descripcion del proyecto
+
+    
 });
 
 

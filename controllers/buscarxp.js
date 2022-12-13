@@ -19,7 +19,7 @@ const buscarPorProyecto = async(req, res = response) => {
 
     const regex = new RegExp( idproyecto, 'i' )
     const propiedades = await Propiedad.find({
-        $or:[{propiedadID: regex}, {descripcion: regex}],
+        $or:[{propiedad: regex}, {descripcion: regex}],
         $and: [{estado: true}]
     }).populate('proyecto', 'nombre').populate('usuario', 'nombre');
 

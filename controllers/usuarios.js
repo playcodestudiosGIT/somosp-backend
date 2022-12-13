@@ -3,6 +3,8 @@ const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
 
+const { generarJWT } = require('../helpers/generar_jwt');
+
 const {validationResult} = require('express-validator');
 
 const usuariosGet = async( req = request, res = response ) => {
@@ -57,10 +59,14 @@ const usuariosPost = async (req,res) => {
     const salt = bcryptjs.genSaltSync();
     usuario.password = bcryptjs.hashSync( password, salt );
 
+    // establecer el JWT
+    const token = await generarJWT( usuario.id );
+
     // Guardar BD
     await usuario.save();
     res.status(201).json({
-        usuario
+        usuario,
+        token
     });
 }
 

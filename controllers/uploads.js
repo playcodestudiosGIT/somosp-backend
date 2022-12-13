@@ -134,9 +134,66 @@ const actualizarImagenCloudinary = async(req, res = response)=> {
 }
 
 
+const agregarGaleria = async(req, res = response)=> {
+  
+    const { id, coleccion, index } = req.params;
+
+    let modelo;
+
+    switch (coleccion) {
+      case 'usuarios':
+        modelo = await Usuario.findById(id);
+        if (!modelo) return res.status(400).json({
+          msg: `El usuario con el id ${id} no existe`
+        });
+        break;
+      
+      case 'propiedades':
+        modelo = await Propiedad.findById(id);
+        if (!modelo) return res.status(400).json({
+          msg: `La propiedad con el id ${id} no existe`
+        });
+        break;
+
+      case 'proyectos':
+        modelo = await Proyecto.findById(id);
+        if (!modelo) return res.status(400).json({
+          msg: `El proyecto con el id ${id} no existe`
+        })
+        break;
+    
+      default:
+        return res.status(500).json({msg: 'se me olvido validar esto'})
+
+    }
+
+
+    // Limpiar imagenes previas de Cloudinary
+    if ( modelo.galeria[index] ){
+      const nombreArr = modelo.galeria[index].split('/');
+      const nombre = nombreArr[nombreArr.length - 1];
+      const [ public_id ] = nombre.split('.');
+      cloudinary.uploader.destroy(public_id);
+    }
+
+    const { tempFilePath } = req.files.archivo;
+
+    const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
+
+
+
+
+    modelo.galeria[index] = secure_url;
+
+    await modelo.save();
+
+    res.json(modelo);
+}
+
+
 module.exports = {
   cargarImagen,
   actualizarImagen,
-  actualizarImagenCloudinary
-  
+  actualizarImagenCloudinary,
+  agregarGaleria
 }

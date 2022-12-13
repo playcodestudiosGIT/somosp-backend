@@ -12,7 +12,7 @@ router.get('/obtener', obtenerPropiedades);
 
 router.get('/:id', [
     check('id', 'El id no es valido').isMongoId(),
-    check('id').custom( existeProyecto ),
+    // check('id').custom( existeProyecto ),
     validarCampos
 ], obtenerPropiedadesPorID);
 
@@ -27,10 +27,12 @@ router.put('/:id', [
 router.post('/', [
     validarJWT,
     tieneRol('ADMIN_ROLE', 'AGENTE_ROLE' ),
-    check('propiedadID', 'El nombre o numero de la propiedad es obligatorio').not().isEmpty(),
+    check('nombreProp', 'El nombre o numero de la propiedad es obligatorio').not().isEmpty(),
     check('sevendeoalquila', 'Obligatorio establecer si es de Venta o Alquiler').isIn(['Venta', 'Alquiler']),
     check('tipopropiedad', 'el tipo de propiedad es obligatorio').isIn(['Apartamento', 'Casa', 'Oficina', 'Lote', 'Local']),
     check('mts2', 'Las medidas 2 son obligatorias').not().isEmpty(),
+    check('descripcion', 'La descripción es obligatoria').not().isEmpty(),
+    check('direccion', 'La direccion es obligatoria').not().isEmpty(),
     check('proyecto', 'No hay proyecto con este id').isMongoId(),
     check('proyecto').custom(existeProyecto),
     validarCampos

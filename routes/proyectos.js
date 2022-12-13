@@ -33,6 +33,9 @@ router.post('/', [
     validarJWT,
     tieneRol('ADMIN_ROLE', 'AGENTE_ROLE' ),
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('descripcion', 'La descripcion es obligatorio').not().isEmpty(),
+    check('direccion', 'La direccion es obligatorio').not().isEmpty(),
+    check('ciudad', 'La ciudad es obligatorio').not().isEmpty(),
     validarCampos
 ], crearProyecto )
 

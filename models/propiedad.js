@@ -1,9 +1,17 @@
 const { Schema, model } = require('mongoose');
 
 const PropiedadSchema = Schema({
-    propiedadID: {
+    nombreProp: {
         type: String,
         required: [true, 'El nombre o numero de la propiedad es obligatorio']
+    },
+    direccion: {
+        type: String,
+        required: [true, 'La direccion es obligatoria']
+    },
+    detalles: {
+        type: String,
+        default: 'Sin detalles'
     },
     sevendeoalquila: {
         type: String,
@@ -32,6 +40,7 @@ const PropiedadSchema = Schema({
     },
     descripcion:{
         type: String,
+        required: true,
     },
     disponible:{
         type: Boolean,
@@ -39,10 +48,11 @@ const PropiedadSchema = Schema({
     },
     img: {
         type: String,
+        default: 'https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
     },
     habitaciones: {
         type: String,
-        default: 'No hab',
+        default: '0',
     },
     precio: {
         type: Number,
@@ -50,15 +60,15 @@ const PropiedadSchema = Schema({
     },
     banos: {
         type: String,
-        default: 'No Value'
+        default: '0'
     },
     altura: {
         type: String,
-        default: 'No Value'
+        default: '0'
     },
     estacionamientos: {
         type: String,
-        default: 'No Value'
+        default: '0'
     },
     galeria: {
         type: ['foto1', 'foto2', 'foto3'],

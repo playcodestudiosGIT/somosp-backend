@@ -75,7 +75,7 @@ const buscarPropiedades = async( termino = '', res = response ) => {
 
     const regex = new RegExp(termino, 'i')
 
-    const propiedad = await Propiedad.find({propiedadID: regex, estado: true}).populate('proyecto', 'nombre');
+    const propiedad = await Propiedad.find({propiedad: regex, estado: true}).populate('proyecto', 'nombre');
 
 
     res.json({

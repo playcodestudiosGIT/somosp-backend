@@ -57,6 +57,8 @@ const crearProyecto = async(req, res = response)=> {
 
     const nombre = req.body.nombre.toUpperCase();
 
+    const {direccion, descripcion, ciudad} = req.body;
+
     const proyectoDB = await Proyecto.findOne({nombre})
     if (proyectoDB) return res.status(400).json({
         msg: `El Proyecto ${req.body.nombre} ya existe`
@@ -66,6 +68,9 @@ const crearProyecto = async(req, res = response)=> {
 
     // Generar data a guardar
     const data = {
+        ciudad,
+        descripcion,
+        direccion,
         nombre,
         usuario,
         

@@ -8364,7 +8364,7 @@ K9:function K9(){},
 OE:function OE(){},
 av1(){var s,r="application/json",q=$.Fj().vC$
 q===$&&A.b()
-q.nK$="https://somosp.herokuapp.com/"
+q.nK$="https://somosp.herokuapp.com"
 s=A.cn(J.bk($.yD.aH().a,"token"))
 q.svU(0,A.aA(["Accept",r,"Content-Type",r,"x-token",s==null?"":s],t.N,t.z))
 q=$.Fj().vC$

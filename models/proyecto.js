@@ -13,13 +13,16 @@ const ProyectoSchema = Schema({
     estado: {
         type: Boolean,
         default: true,
+    },
+    ciudadPais: {
+        type: String,
         required: true
     },
     descripcion: {
         type: String,
         required: true
     },
-    ciudad: {
+    amenidades: {
         type: String,
         required: true
     },
@@ -34,7 +37,59 @@ const ProyectoSchema = Schema({
     },
     galeria: {
         type: Array
-    }
+    },
+    lat: {
+        type: String,
+        require: true,
+        default: '0'
+    },
+    lon: {
+        type: String,
+        require: true,
+        default: '0'
+    },
+    piscina: {
+        type: Boolean,
+        default: false
+    },
+    estac: {
+        type: Boolean,
+        default: false
+    },
+    roomParty: {
+        type: Boolean,
+        default: false
+    },
+    gym: {
+        type: Boolean,
+        default: false
+    },
+    roomPlay: {
+        type: Boolean,
+        default: false
+    },
+    parque: {
+        type: Boolean,
+        default: false
+    },
+    tenis: {
+        type: Boolean,
+        default: false
+    },
+    squash: {
+        type: Boolean,
+        default: false
+    },
+    raquetball: {
+        type: Boolean,
+        default: false
+    },
+    futbol: {
+        type: Boolean,
+        default: false
+    },
+
+
 
     // Descripcion del proyecto
 

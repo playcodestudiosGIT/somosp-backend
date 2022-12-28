@@ -55,9 +55,9 @@ const obtenerProyectosPorID = async(req, res = response) => {
 
 const crearProyecto = async(req, res = response)=> {
 
-    const nombre = req.body.nombre.toUpperCase();
+    const nombre = req.body.nombre;
 
-    const {direccion, descripcion, ciudad} = req.body;
+    const {direccion, descripcion, ciudadPais, estado, lat, lon, ...resto } = req.body;
 
     const proyectoDB = await Proyecto.findOne({nombre})
     if (proyectoDB) return res.status(400).json({
@@ -68,19 +68,21 @@ const crearProyecto = async(req, res = response)=> {
 
     // Generar data a guardar
     const data = {
-        ciudad,
+        ciudadPais,
         descripcion,
         direccion,
         nombre,
         usuario,
-        
+        estado,
+        lat,
+        lon,
+        ...resto
     }
 
     const proyecto = new Proyecto(data);
     await proyecto.save();
 
     res.status(201).json({
-        msg: 'Categoria creada con exito',
         proyecto
     });
 }

@@ -35,7 +35,10 @@ router.post('/', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripcion es obligatorio').not().isEmpty(),
     check('direccion', 'La direccion es obligatorio').not().isEmpty(),
-    check('ciudad', 'La ciudad es obligatorio').not().isEmpty(),
+    check('ciudadPais', 'La ciudad es obligatorio').not().isEmpty(),
+    check('lat', 'La coordenada Latitud es obligatoria'),
+    check('lon', 'La coordenada Longitud es obligatoria'),
+    check('amenidades', 'Las amenindades son obligatorias'),
     validarCampos
 ], crearProyecto )
 

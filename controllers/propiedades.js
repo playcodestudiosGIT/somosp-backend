@@ -11,6 +11,7 @@ const obtenerPropiedades = async( req = request, res = response ) => {
     const [total, propiedades] = await Promise.all([
         Propiedad.countDocuments(query),
         Propiedad.find(query)
+            .populate('proyecto', 'nombre')
             .skip(desde)
             .limit(limite)
     ]);
@@ -26,7 +27,7 @@ const obtenerPropiedadesPorID = async( req = request, res = response ) => {
 
     const { id } = req.params;
 
-    const propiedad = await Propiedad.findById(id)
+    const propiedad = await Propiedad.findById(id);
     if(!propiedad) return res.status(400).json({
         msg: 'La propiedad no existe. intenta con otra'
     });

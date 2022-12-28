@@ -27,7 +27,7 @@ const obtenerPropiedadesPorID = async( req = request, res = response ) => {
 
     const { id } = req.params;
 
-    const propiedad = await Propiedad.findById(id);
+    const propiedad = await Propiedad.findById(id).populate('proyecto', 'nombre');
     if(!propiedad) return res.status(400).json({
         msg: 'La propiedad no existe. intenta con otra'
     });

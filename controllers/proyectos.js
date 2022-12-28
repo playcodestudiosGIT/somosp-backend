@@ -22,7 +22,6 @@ const obtenerProyectos = async(req, res = response) => {
     const [total, proyectos ] = await Promise.all([
         Proyecto.countDocuments(query),
         Proyecto.find(query)
-        .populate('usuario', 'nombre')
             .skip(desde)
             .limit(limite)
     ]);
@@ -39,7 +38,7 @@ const obtenerProyectosPorID = async(req, res = response) => {
 
     const { id } = req.params
 
-    const proyecto = await Proyecto.findById(id).populate('usuario', 'nombre');
+    const proyecto = await Proyecto.findById(id);
     if(!proyecto) return res.status(400).json({
         msg: 'El Proyecto no existe. intenta con otro'
     });

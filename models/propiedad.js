@@ -48,7 +48,7 @@ const PropiedadSchema = Schema({
     },
     img: {
         type: String,
-        default: 'https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+        default: 'https://res.cloudinary.com/dnejayiiq/image/upload/v1671851591/no-image_xb946x.jpg',
     },
     habitaciones: {
         type: String,

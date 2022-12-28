@@ -11,7 +11,7 @@ const buscarPorProyecto = async(req, res = response) => {
     const isMongoID = ObjectId.isValid( idproyecto ); //true/true
 
     if(isMongoID){
-        const propiedades = await Propiedad.findById(idproyecto).populate('proyecto', 'nombre').populate('usuario', 'nombre');
+        const propiedades = await Propiedad.findById(idproyecto).populate('proyecto');
         return res.json({
             results: propiedades
         })

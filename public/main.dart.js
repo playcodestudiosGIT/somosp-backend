@@ -8387,7 +8387,7 @@ M0:function M0(){},
 Qp:function Qp(){},
 azp(){var s,r="application/json",q=$.H9().wR$
 q===$&&A.c()
-q.ov$="http://localhost:8080/api"
+q.ov$="https://somosp.herokuapp.com/api"
 s=A.cu(J.bf($.zI.aL().a,"token"))
 q.sxc(0,A.am(["Accept",r,"Content-Type",r,"x-token",s==null?"":s],t.N,t.z))
 q=$.H9().wR$

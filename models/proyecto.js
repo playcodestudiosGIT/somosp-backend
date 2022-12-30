@@ -39,6 +39,10 @@ const ProyectoSchema = Schema({
         type: String,
         default: ''
     },
+    brochure: {
+        type: String,
+        default: ''
+    },
     galeria: {
         type: Array
     },

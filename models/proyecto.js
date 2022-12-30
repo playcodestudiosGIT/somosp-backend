@@ -35,6 +35,10 @@ const ProyectoSchema = Schema({
         type: String,
         default: ''
     },
+    video: {
+        type: String,
+        default: ''
+    },
     galeria: {
         type: Array
     },

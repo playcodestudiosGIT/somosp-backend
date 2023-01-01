@@ -1,6 +1,6 @@
 {
-    "name": "admin_dashboard",
-    "short_name": "admin_dashboard",
+    "name": "somosproperties",
+    "short_name": "somosproperties",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

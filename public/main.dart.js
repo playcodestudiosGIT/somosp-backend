@@ -76000,7 +76000,7 @@ return new A.pc(new A.x7(new A.aK(new A.a8(s,r),q)),new A.x7(new A.aK(new A.a8(s
 $S:482}
 A.Kl.prototype={
 G(a){var s=null,r=$.ay8().gR1(),q=$.dH(),p=A.a([$.aHn()],t.tc),o=$.ay9(),n=A.awI(B.ac,s),m=A.ai(B.d.aE(127.5),158,158,158)
-return new A.zk(q,o,"/",r,p,new A.a9U(a),"Somosproperties - Venta y Alquiler de propiedades",n.a9L(B.G,B.G,new A.tU(s,s,s,s,s,s,s,new A.bl(m,t.Il),s,s,s,s,s),B.G),!1,new A.a9V(s),s)}}
+return new A.zk(q,o,"/",r,p,new A.a9U(a),"Somos Properties - Venta y Alquiler de propiedades",n.a9L(B.G,B.G,new A.tU(s,s,s,s,s,s,s,new A.bl(m,t.Il),s,s,s,s,s),B.G),!1,new A.a9V(s),s)}}
 A.a9U.prototype={
 $2(a,b){var s=this.a,r=A.aV(s,!0,t.R)
 A.aV(s,!1,t.Y).jh()
@@ -76577,7 +76577,7 @@ $1(a){return new A.aR(new A.al(0,0,15,0),new A.GJ(a,a.a.toLowerCase(),null),null
 $S:498}
 A.t9.prototype={
 G(a){var s=null,r=a.O(t.w).f.a,q=r.a>1323?r.b*0.07:s,p=t.p
-return A.ak(s,A.nl(B.UK,A.a([A.ak(s,A.bE(A.a([A.iG(B.y,s,!1,s,s,!1,s,new A.cG("https://res.cloudinary.com/dnejayiiq/image/upload/v1672611233/somospisoblanco_rl0zca.png",1,s),!1,s,B.aa,20),new A.iK(B.j,"Somosproperties S.A",new A.a8b(),s)],p),B.p,B.o,B.n),B.h,s,s,s,s,s,s,s,s,s,215),new A.iK(B.j,"Calle 50, Av. Elvira Mendez, PH El Ejecutivo, Ofic. 303",new A.a8c(),s)],p),0),B.h,B.k,s,s,s,q,s,s,s,s,s)}}
+return A.ak(s,A.nl(B.UK,A.a([A.ak(s,A.bE(A.a([A.iG(B.y,s,!1,s,s,!1,s,new A.cG("https://res.cloudinary.com/dnejayiiq/image/upload/v1672611233/somospisoblanco_rl0zca.png",1,s),!1,s,B.aa,20),new A.iK(B.j,"Somos Properties S.A",new A.a8b(),s)],p),B.p,B.o,B.n),B.h,s,s,s,s,s,s,s,s,s,215),new A.iK(B.j,"Calle 50, Av. Elvira Mendez, PH El Ejecutivo, Ofic. 303",new A.a8c(),s)],p),0),B.h,B.k,s,s,s,q,s,s,s,s,s)}}
 A.a8b.prototype={
 $0(){return A.h7("about")},
 $S:0}

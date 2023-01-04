@@ -14,25 +14,33 @@
   <base href="/">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="title" content="Somosproperties">
+  <meta name="title" content="Somos Properties">
   <meta name="description" content="Venta y Alquiler de propiedades. Casas, Apartamentos, Oficinas, Locales Comerciales, Lotes de terrenos">
+  <!-- Palabras Claves -->
+  <meta name="keywords" content="Venta, Alquiler, Propiedades, Casas, Apartamentos, Oficinas, Terrenos, Panamá, Ciudad"/>
+  <meta name="author" content="Playcode Systems S.A" />
+  <meta name="copyright" content="Playcode Systems S.A" />
   <!-- Somop -->
   <meta name="geo.region" content="PA" />
   <meta name="geo.position" content="8.559559;-81.130843" />
   <meta name="ICBM" content="8.559559, -81.130843" />
+  <meta name="robots" content="index"/>
+  <meta name="robots" content="noindex"/>
+  <meta http-equiv="expires" content="1296000"/>
+  
   <!-- google maps -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgPSqJ3r5SjJ7z4Ibf80FoNmGIkZwKiow"></script>
   
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="somosproperties">
+  <meta name="apple-mobile-web-app-title" content="Somos Properties">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>Somosproperties - Venta y Alquiler de propiedades</title>
+  <title>Somos Properties</title>
   <link rel="manifest" href="manifest.json">
   <script src="https://maps.google"></script>
 </head>
@@ -44,17 +52,20 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=4062496621');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1973193342');
       });
     }
   </script>
+
   <!--SEO RENDER HTML-->
-  <script>
-    const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
-    if (regExp.test(navigator.userAgent)) {
-      window.flutterWebRenderer = "html";
-    }
-  </script>
+    <script>
+      const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
+      if (regExp.test(navigator.userAgent)) {
+        window.flutterWebRenderer = "html";
+      }
+    </script>
+    <!--SEO RENDER HTML-->
+
   <script src="main.dart.js" type="application/javascript"></script>
 
 </body>

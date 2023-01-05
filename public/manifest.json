@@ -1,6 +1,6 @@
 {
-    "name": "Somos Properties",
-    "short_name": "Somos Properties",
+    "name": "somosproperties",
+    "short_name": "somosproperties",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

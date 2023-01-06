@@ -25,9 +25,6 @@
   <meta name="geo.position" content="8.559559;-81.130843" />
   <meta name="ICBM" content="8.559559, -81.130843" />
   <meta http-equiv="expires" content="1296000"/>
-  <meta property="og:title" content="Somos Properties | Venta y Alquiler de propiedades - Casas, Apartamentos, Oficinas, Locales Comerciales, Lotes de Terrenos" />
-  <meta property="og:description" content="Alquiler y venta de propiedades. Propiedades en todo Panamá - casa, apartamento, oficina, local en venta o alquiler" />
-  <meta property="og:image" content="https://res.cloudinary.com/dnejayiiq/image/upload/v1672446419/logo_uvurw6.png" />
   
   <!-- google maps -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgPSqJ3r5SjJ7z4Ibf80FoNmGIkZwKiow"></script>
@@ -41,19 +38,19 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>Somos Properties</title>
+  <title>Somos Properties- Venta y Alquiler de propiedades, Casas, Apartamentos, Oficinas, Locales, Lotes</title>
   <link rel="manifest" href="manifest.json">
   <script src="https://maps.google"></script>
 </head>
 <body>
-
+  <h1 style="color: transparent">somos properties - Venta y Alquiler de propiedades en Panamá</h1>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=79325148');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=279894688');
       });
     }
   </script>
@@ -62,11 +59,13 @@
     <script>
       const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
       if (regExp.test(navigator.userAgent)) {
+        console.log('print');
         window.flutterWebRenderer = "html";
       }
     </script>
     <!--SEO RENDER HTML-->
 
   <script src="main.dart.js" type="application/javascript"></script>
+  
 </body>
 </html>

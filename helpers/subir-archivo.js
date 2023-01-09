@@ -35,8 +35,49 @@ const subirArchivo = (files, extensionesValidas = ['png', 'PNG', 'jpg', 'JPG', '
 
 
 }
+const subirPdf = (files, extensionesValidas = ['pdf', 'PDF'], carpeta = 'CV') => {
+
+    return new Promise((resolve, reject) => {
+
+        const { archivo } = files;
+
+        const nombreCortado = archivo.name.split('.');
+        const extension = nombreCortado[ nombreCortado.length -1 ];
+
+        // Validar extension
+
+        if (!extensionesValidas.includes(extension)){
+            return reject(`La extencion ${extension} no es permitida - ${extensionesValidas}`);
+        }
+
+        
+        
+        
+        
+        
+        archivo.mv(uploadPath, (err) => {
+            if (err) {
+                console.log(err);
+                reject(err);
+            }
+
+            fileData = {
+                fileName: archivo.name,
+                size: archivo.size,
+
+            }
+
+            resolve(fileData);
+        });
+    })
+
+    
+
+
+}
 
 
 module.exports = {
-    subirArchivo
-}
+    subirArchivo,
+    subirPdf
+}   

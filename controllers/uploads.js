@@ -4,7 +4,7 @@ const fs = require('fs');
 const cloudinary = require('cloudinary').v2;
 
 const { response } = require("express");
-const { subirArchivo } = require("../helpers");
+const { subirArchivo, subirPdf } = require("../helpers");
 const {Usuario, Proyecto, Propiedad} = require('../models');
 
 
@@ -19,6 +19,35 @@ const cargarImagen = async(req, res = response) => {
       const carpeta = req.body.carpeta ?? 'void';
       const nombre = await subirArchivo(req.files, undefined, carpeta);
       res.json({ nombre });
+    
+  } catch (msg) {
+    res.status(400).json({ msg })
+  }
+  
+
+  
+}
+
+const cargarPdf = async(req, res = response) => {
+
+
+  try {
+    //   const nombre = await subirArchivo(req.files, ['txt', 'md', 'dart'], 'textos');
+      // const carpeta = req.body.carpeta ?? 'CV';
+      const { tempFilePath } = req.files.archivo;
+      const nombreCloud = req.files.archivo.name
+
+
+      const {public_id, bytes, url, folder} = await cloudinary.uploader.upload(tempFilePath, {public_id: nombreCloud, folder: 'pdf/cv/'});
+      nombre = public_id.split('/');
+
+      const pdf = {
+        nombrePdf: nombre[nombre.length - 1],
+        size: bytes,
+        path: folder,
+        url: url
+      }
+      res.json(pdf);
     
   } catch (msg) {
     res.status(400).json({ msg })
@@ -195,5 +224,6 @@ module.exports = {
   cargarImagen,
   actualizarImagen,
   actualizarImagenCloudinary,
-  agregarGaleria
+  agregarGaleria,
+  cargarPdf
 }

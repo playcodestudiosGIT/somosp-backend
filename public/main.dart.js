@@ -21665,7 +21665,7 @@ adH:function adH(){},
 adI:function adI(){},
 au5(){var s,r="application/json",q=$.EE().e$
 q===$&&A.b()
-q.no$="http://localhost:8080/api"
+q.no$="https://somosp.herokuapp.com/api"
 s=A.c1(J.b3($.rq.cS().a,"token"))
 q.sCD(0,A.at(["Accept",r,"Content-Type",r,"x-token",s==null?"":s],t.N,t.z))
 q=$.EE().e$
